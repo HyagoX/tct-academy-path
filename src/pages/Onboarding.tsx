@@ -22,7 +22,7 @@ const slides = [
   },
 ];
 
-const Onboarding = () => {
+const Onboarding = ({ onComplete }: { onComplete?: () => void }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nome, setNome] = useState("");
   const navigate = useNavigate();
@@ -37,12 +37,14 @@ const Onboarding = () => {
     if (nome.trim()) {
       localStorage.setItem("tct_user_name", nome);
       localStorage.setItem("tct_onboarding_complete", "true");
+      onComplete?.();
       navigate("/");
     }
   };
 
   const handleSkip = () => {
     localStorage.setItem("tct_onboarding_complete", "true");
+    onComplete?.();
     navigate("/");
   };
 

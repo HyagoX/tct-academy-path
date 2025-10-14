@@ -29,7 +29,7 @@ const App = () => {
           <Routes>
             {showOnboarding ? (
               <>
-                <Route path="/onboarding" element={<Onboarding />} />
+                <Route path="/onboarding" element={<Onboarding onComplete={() => setShowOnboarding(false)} />} />
                 <Route path="*" element={<Navigate to="/onboarding" replace />} />
               </>
             ) : (
