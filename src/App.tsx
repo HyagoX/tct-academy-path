@@ -14,12 +14,11 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [showOnboarding, setShowOnboarding] = useState(true);
-
-  useEffect(() => {
+  // Inicializa verificando localStorage diretamente para evitar loop
+  const [showOnboarding, setShowOnboarding] = useState(() => {
     const hasCompletedOnboarding = localStorage.getItem("tct_onboarding_complete");
-    setShowOnboarding(!hasCompletedOnboarding);
-  }, []);
+    return !hasCompletedOnboarding;
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
